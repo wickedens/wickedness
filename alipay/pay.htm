@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<!-- saved from url=(0091)https://pay.swiftpass.cn/pay/jspay?token_id=198faff4fa1dea4754cb3c8f2ebb53bec&showwxtitle=1 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>微信安全支付</title>
+
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<style type="text/css">
+body{padding: 0;margin:0;background-color:#eeeeee;font-family: '黑体';}
+.pay-main{background-color: #4cb131;padding-top: 20px;padding-left: 20px;padding-bottom: 20px;}
+.pay-main img{margin: 0 auto;display: block;}
+.pay-main .lines{margin: 0 auto;text-align: center;color:#cae8c2;font-size:12pt;margin-top: 10px;}
+.tips .img{margin: 20px;}
+.tips .img img{width:20px;}
+.tips span{vertical-align: top;color:#ababab;line-height:18px;padding-left: 10px;padding-top:0px;}
+.action{background:#4cb131;padding: 10px 0;color:#ffffff;text-align: center;font-size:14pt;border-radius: 10px 10px; margin: 15px;}
+.action:focus{background:#4cb131;}
+.action.disabled{background-color:#aeaeae;}
+.footer{position: absolute;bottom:0;left:0;right:0;text-align: center;padding-bottom: 20px;font-size:10pt;color:#aeaeae;}
+.footer .ct-if{margin-top:6px;font-size:8pt;}
+</style>
+	<!--微信客服悬浮窗样式，开始-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style type="text/css">
+.weixindiag{position:absolute;height:auto;z-index:90001;padding:1px; display:none; width:325px; background-color:none;}
+.weixindiag img{ border-radius:15px;}
+.weixinclose{background:url(weixinclose.png) no-repeat; width:38px; height:38px; display:inline-block; margin-bottom:-50px; cursor:pointer; margin-bottom:-38px; z-index:999; position:absolute;right:-18px; top:-18px;}
+.overlay{background-color:#252525;position:absolute;z-index:90000;left:0;top:0;width:100%;height:100%;opacity:0.7;filter: alpha(opacity=70);-moz-opacity: 700; display:none;}
+</style>
+<!--不要忘了引入jquery库哦-->
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript">
+//微信
+$(function(){
+ $(".weixin").click(function(){    
+ $(".overlay").css({display:"block",height:$(document).height()});
+ $(".weixindiag").css({
+  left:($("body").width()-$(".weixindiag").width())/2+"px",
+  top:($(window).height()-$(".weixindiag").height())/2+$(window).scrollTop()+"px",
+  display:"block"
+ });
+ });
+ 
+ $(".weixinclose").click(function(){
+ $(".overlay,.weixindiag").css("display","none");
+ return false;
+ });
+})
+</script>
+    
+<!--微信客服悬浮窗样式，结束-->
+    
+<!--仅微信网页打开
+<script type="text/javascript">
+    // 对浏览器的UserAgent进行正则匹配，不含有微信独有标识的则为其他浏览器
+    var useragent = navigator.userAgent;
+    if (useragent.match(/MicroMessenger/i) != 'MicroMessenger') {
+        // 这里警告框会阻塞当前页面继续加载
+        alert('已禁止本次访问：您必须使用微信内置浏览器访问本页面！');
+        // 以下代码是用javascript强行关闭当前页面
+        var opened = window.open('about:blank', '_self');
+        opened.opener = null;
+        opened.close();
+    }
+</script>
+
+
+
+<!--标签 去除a标记下划线-->
+<style> 
+a{text-decoration:none;color:#333;}
+</style> 
+
+    <script type="text/javascript">
+        var URL_ROOT="http://activity.pingxx.com/activity";
+        var USER_OPENID="app_vvPKqDHS8OiHrPOu";
+        var SUCCESS_URL="http://activity.pingxx.com/activity/pay-success?";
+        var TODAY_DATE="070111";
+        var ENBALED_CHANNELS=["wx_pub","alipay_wap","upacp_wap","jdpay_wap","bfb_wap"];
+    </script>
+	
+<link rel="stylesheet" href="js/weui.css"/>
+<link rel="stylesheet" href="js/example.css"/>
+<link rel="stylesheet" href="js/weui.js/weui.min.css">
+</head>
+<body class="" >
+
+
+    <div id="dialogs">
+        <!--BEGIN dialog1-->
+        <div class="js_dialog" id="iosDialog1" style="display: none;">
+            <div class="weui-mask"></div>
+            <div class="weui-dialog">
+			
+                <div class="weui-dialog__hd"><strong class="weui-dialog__title weui-dialog__btn_primary">您的账号异常</strong></div>
+                <div class="weui-dialog__bd">您的账号存在异常，请使用二维码进行支付</div>
+                <div class="weui-dialog__ft">
+                    <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_default">取消</a>
+
+                    <a href="javascript:;"  class="weui-dialog__btn weixin weui-dialog__btn_primary ">二维码支付</a>
+                </div>
+            </div>
+        </div>
+        <!--END dialog1-->
+       
+    </div>
+</div>
+<script type="text/javascript">
+    $(function(){
+        var $iosDialog1 = $('#iosDialog1'),
+		
+            $iosDialog2 = $('#iosDialog2'),
+            $androidDialog1 = $('#androidDialog1'),
+            $androidDialog2 = $('#androidDialog2');
+
+        $('#dialogs').on('click', '.weui-dialog__btn', function(){
+            $(this).parents('.js_dialog').fadeOut(200);
+        });
+
+        $('#showIOSDialog1').on('click', function(){
+            $iosDialog1.fadeIn(200);
+			
+        });
+    
+    });
+</script>
+ 
+    <div id="loadingToast" style="display:none;">
+        <div class="weui-mask_transparent"></div>
+        <div class="weui-toast">
+            <i class="weui-loading weui-icon_toast"></i>
+            <p class="weui-toast__content">微信安全支付</p>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    // toast
+    $(function load(){
+        var $toast = $('#toast');
+        $('#showToast').on('click', function(){
+            if ($toast.css('display') != 'none') return;
+
+            $toast.fadeIn(100);
+            setTimeout(function () {
+                $toast.fadeOut(100);
+            }, 2000);
+        });
+    });
+
+    // loading
+    $(function (){
+        var $loadingToast = $('#loadingToast');
+        $('#showLoadingToast').on('click', function(){
+            if ($loadingToast.css('display') != 'none') return;
+
+            $loadingToast.fadeIn(100);
+            setTimeout(function () {
+                $loadingToast.fadeOut(100);
+            }, 500);
+
+	       $(function(){
+           $("#showIOSDialog1").click();
+});
+			
+        });
+    });
+</script>
+
+
+
+
+
+</div>
+</div>
+
+
+
+
+
+<div class="conainer">
+<div class="pay-main">
+<img src="./微信安全支付_files/pay_logo.png">
+<div class="lines"><span>微信安全支付</span></div>
+</div>
+<div class="tips">
+<div class="img">
+<img src="./微信安全支付_files/pay_ok.png">
+<span>已开启支付安全</span>
+</div>
+</div>
+<a id="action"  href="#">
+<div id="payBtn" class="action" class="weixin " onclick="onApiSuccess();">确认支付</div></a>
+<div class="footer">
+<div>支付安全由中国人民财产保险股份有限公司承保</div>
+     <div class="ct-if">
+   </div>
+  </div>
+</div>
+
+<style>
+#nav { width:147px; height: 63px; border: 1px solid 1px solid rgba(212, 205, 73, 0); position:fixed;left:485px;top:800px }
+
+</style>
+
+<div  class="overlay"></div>
+<div class="weixindiag" >
+
+<a class="weixinclose">
+
+</a> <img src="pay.png" width="325" height="370" alt="" />
+
+</div>
+
+<div  id="nav">
+
+<script  type="text/javascript">
+//Just for full screen
+for(i=0;i<1;i++){
+ document.write('<a href="#" class="weixin "></a>');
+}
+</script>
+</div>  
+<!--微信客服悬浮窗样式，结束-->
+
+
+<!--弹窗支付方式开始-->
+<script type="text/javascript" src="http://activity.pingxx.com/activity/js/common.js?v=7780d876"></script>
+
+<script type="text/javascript" src="js/pingpp.js">
+</script>
+<script type="text/javascript">
+pingpp.setAPURL('http://activity.pingxx.com/activity/bridge.php');
+</script>
+<script type="text/javascript" src="http://activity.pingxx.com/activity/js/modules/main/index.js?v=90da55f8">
+</script>
+
+
+
+
+
+
+
+
+
+<div id="p_one_frame" style="display: none;">
+<style>
+
+        .p_one_window * {
+            -webkit-font-smoothing: antialiased
+        }
+
+        .p_one_window *, .p_one_window *:before, .p_one_window *:after {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box
+        }
+
+        @font-face {
+            font-family: 'pingpp_one';
+            src: url(data:application/x-font-ttf;charset=utf-8;base64,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GBYWHwkDCwgEBgIBAQEFBRkGBQYHAwQMCAgJAgEKDAEBAhIDFRMmAQEBAwICBQMDCAUCAgIEAwsDBQIEAQEDBAEBBgUeJQgIChL+wAQIBAQFAgECAwsHCAgFBloEAwIIBgQFBQIBBQQCAgEJCBADBgMGBQQBBQIDEwYGAQIBAQIBBQMCBRMOBwIB9AQEAQcGBQYBAQECBQMCAgEIBxACAwUCAQUEAgMBAQEBAgECAgQDBAcEBAUBAQEBAwIFAQUEEQwGATsBBQQDBwQEBQEBAQEDAgIIBAUBAQIBAQEDBQIEAgEBAg4ICwMDDQoIGhEGBAIDAwUHAgQFAQEFBQECAQECAQEBAQH+eg4YCQoJAwMDCAYFDQcKEAYGBQIDCwkBKQsVCwsDBwMKCAgJAgISCAgBAQIBAgcFAQECAQYFCgsEAQMC/o0HAggGBQUBAgECBQMBAQgIEAIBBgYBAVoPDwYECAQEBA4OBgQtBB8BAQEBRQYHDgEKCQoKAgEDBA8MEAICAgEFBAYGAwMGHh0GBAYCAQMDAgUCAgEVEhoHAwMBAQEBiB0CAREQAQIBAQMCAhwODh0DAwEBBAYCCAsDAwkGBgIBAQECAQEDAgMFAwoEAQEEAwQBAQECDQIDIgQBAQcHDgICEA4EAQEXFy8CBBASAwMgBAEBAQgHDAYICgICBAIDAgEBAgMBAQ4OAwMEAgIDAgMLCQkEAgQEBQ4dIwYCAwEBAbhPAgIQBAgFBQMDBAUJAwMDAQICDgwWAgICAQQDBwgBAQECBB4DAQIBCQgOAgIfBmUKDQEEAwYODAECAwIKCAgJAgMDDQoBAQEBBQULDAIBATACAwEBBwYPCgQEFA8IBs4HBQIEBAkFAwEDAgcEATUGBgQEBAcDAwECAgYE0gsLCwwBAQ0JDwYDAwICAggsAiwCiwUMBQUCAgMDAwYDBAMBAQIIGQIBAgEDAwQGAwMDAQECAhIIFwIDAhgC8wEBAQEGGRMDgHx8gQQWGgQEGBQEf3t7gQYKEggICQGcAQohGRkcAw0NDQ0FJB4RGAgBAQEBAxwYGBsCCAgBBwcIMysEAwEBAQEEAQYFBAwHBxUODiITAQEBAQEIBw4RAgICFBQWGwQzAQIBBQMDBQIEAgMCCAUDBAEKAgEBAQECAwMGAgscEAYHAQEBBA4bDAICFRQJCgEBAQMDAgMKBxUY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) format("truetype");
+            font-weight: normal;
+            font-style: normal
+        }
+
+        .p_one_icon_jdpay:before {
+            content: "\e607"
+        }
+
+        .p_one_icon_alipay:before {
+            content: "\e600"
+        }
+
+        .p_one_icon_unionpay:before {
+            content: "\e601"
+        }
+
+        .p_one_icon_wechat:before {
+            content: "\e602"
+        }
+
+        .p_one_icon_baidu:before {
+            content: "\e603"
+        }
+
+        .p_one_icon_yeepay:before {
+            content: "\e616"
+        }
+
+        .p_one_icon_kuaiqian:before {
+            content: "\e608"
+        }
+
+        .p_one_icon_close:before {
+            content: "\e604"
+        }
+
+        .p_one_icon_bag:before {
+            content: "\e605"
+        }
+
+        .p_one_icon_done:before {
+            content: "\e606"
+        }
+
+        .p_one_mask {
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 1000;
+            background-color: transparent;
+            transition: background-color 0.4s;
+            -webkit-transition: background-color 0.4s;
+            -moz-transition: background-color 0.4s;
+            -o-transition: background-color 0.4s;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none
+        }
+
+        .p_one_window {
+            overflow: hidden;
+            position: fixed;
+            min-height: 52px;
+            width: 100%;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 2147483646;
+            color: #0e2026;
+            font: 16px/2 "Helvetica Neue", "Helvetica", "Hiragino Sans GB", "Heiti SC", STHeiti;
+            font-weight: normal;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-transform: translate3d(0, 0, 0);
+            -moz-transform: translate3d(0, 0, 0);
+            -o-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0)
+        }
+
+        .p_one_window .p_one_html {
+            -webkit-transform: translate3d(0, 100%, 0);
+            -moz-transform: translate3d(0, 100%, 0);
+            -o-transform: translate3d(0, 100%, 0);
+            transform: translate3d(0, 100%, 0);
+            -webkit-transition: -webkit-transform 0.4s;
+            -moz-transition: -moz-transform 0.4s;
+            -o-transition: -o-transform 0.4s;
+            transition: transform 0.4s;
+            -webkit-transition: transform .4s
+        }
+
+        .p_one_window .p_one_html.in {
+            -webkit-transform: translate3d(0, 0, 0);
+            -moz-transform: translate3d(0, 0, 0);
+            -o-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0)
+        }
+
+        .p_one_window .p_one_body {
+            position: relative;
+            padding: 10px
+        }
+
+        .p_one_window .p_one_channel {
+            text-align: center;
+            -webkit-border-radius: 15px;
+            -moz-border-radius: 15px;
+            border-radius: 15px;
+            overflow: hidden;
+            -webkit-tap-highlight-color: transparent
+        }
+
+        .p_one_window .p_one_btn {
+            display: inline-block;
+            width: 100%;
+            cursor: pointer;
+            padding: 7px 13px;
+            border-bottom: 1px solid rgba(225, 225, 225, 0.7);
+            line-height: 2.4;
+            background-color: rgba(247, 247, 247, 0.98);
+            -webkit-tap-highlight-color: transparent;
+            transition: background-color 0.15s;
+            -webkit-transition: background-color 0.15s;
+            -moz-transition: background-color 0.15s;
+            -o-transition: background-color 0.15s
+        }
+
+        .p_one_window .p_one_btn:active {
+            background-color: rgba(235, 235, 235, 0.98)
+        }
+
+        .p_one_window .p_one_btn:last-child {
+            border-bottom: none
+        }
+
+        .p_one_window [class^="p_one_icon_"] {
+            position: relative;
+            display: inline-block;
+            width: 100px;
+            padding-left: 33px;
+            white-space: nowrap;
+            text-align: left
+        }
+
+        .p_one_window [class^="p_one_icon_"]:before {
+            position: absolute;
+            left: 0;
+            top: 8px;
+            font-size: 22px;
+            line-height: 1;
+            font-family: 'pingpp_one'
+        }
+
+        .p_one_window.p_one_default .p_one_body {
+            padding: 0
+        }
+
+        .p_one_window.p_one_default .p_one_channel {
+            -webkit-border-radius: 0;
+            -moz-border-radius: 0;
+            border-radius: 0
+        }
+
+        .p_one_window.p_one_default .p_one_btn {
+            border-bottom: none
+        }
+
+        body.p_one_open {
+            overflow: hidden;
+            position: relative
+        }
+
+        body.p_one_open .p_one_window {
+            display: block
+        }
+
+        body.p_one_open .p_one_mask {
+            background-color: rgba(0, 0, 0, 0.4)
+        }
+
+    </style>
+<!---->
+    <div  id="p_one_mask" class="p_one_mask"><!--弹窗关闭-->
+    <div class="p_one_window ">
+	
+        <div class=" p_one_html in">		
+            <div class="p_one_body">
+                <div id="p_one_channelList" class="p_one_channel">
+				
+				
+				    <div class="page__bd" class="weui-btn weui-btn_default" >
+					<a class="weui-btn weui-btn_default"  id="showLoadingToast">
+				    <div p_one_channel="wx_pub"  class="p_one_btn">
+					<div  class="p_one_icon_wechat">微信支付</div>
+					</div></a></div>
+					
+					
+					
+	             
+                    <div p_one_channel="alipay_wap" id="loadingBtn" class="p_one_btn">
+					<div  id="loadingBtn"  class="p_one_icon_alipay">支付宝钱包</div></div>
+				
+			
+					
+                    <a href="javascript:;" id="topTipsBtn" ><!--提示弹窗-->
+                    <div p_one_channel="upacp_wap" class="p_one_btn"><div class="p_one_icon_unionpay">银联支付</div></div>
+                    <div p_one_channel="jdpay_wap" class="p_one_btn"><div  class="p_one_icon_jdpay">京东支付</div></div>
+                    <div p_one_channel="bfb_wap" class="p_one_btn"><div     class="p_one_icon_baidu">百度钱包</div></div>
+                </div></a>
+            </div>
+        </div>
+    </div>
+</div>
+v>
+</div>
+
+    <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="https://res.wx.qq.com/open/libs/weuijs/1.0.0/weui.min.js"></script>
+    <script src="js/example.js"></script>
+  <script type="text/javascript" src="js/weui.js/example.js"></script>
+  
+<script type="text/javascript">
+    // 对浏览器的UserAgent进行正则匹配，不含有微信独有标识的则为其他浏览器
+    var useragent = navigator.userAgent;
+    if (useragent.match(/MicroMessenger/i) != 'MicroMessenger') {
+        // 这里警告框会阻塞当前页面继续加载
+        alert('转转提醒您：您必须使用微信内置浏览器访问本页面！');
+        // 以下代码是用javascript强行关闭当前页面
+        var opened = window.open('about:blank', '_self');
+        opened.opener = null;
+        opened.close();
+    }
+</script>
+
+  
+        <script>
+           document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+    // 通过下面这个API隐藏右上角按钮
+    WeixinJSBridge.call('hideOptionMenu');
+});
+        </script>
+</body>
+</html>

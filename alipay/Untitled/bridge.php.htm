@@ -1,0 +1,192 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+    <title>支付提示</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"/>
+    <style>
+        *, :before, :after {
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+        }
+
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+            margin: 0;
+            padding: 0
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        fieldset, img {
+            border: 0
+        }
+
+        li {
+            list-style: none
+        }
+
+        caption, th {
+            text-align: left
+        }
+
+        q:before, q:after {
+            content: ""
+        }
+
+        input:password {
+            ime-mode: disabled
+        }
+
+        :focus {
+            outline: 0
+        }
+
+        html, body {
+            -webkit-touch-callout: none;
+            touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            tap-highlight-color: transparent;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            font-size: 15px;
+            font-weight: 300;
+            font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
+        }
+
+        a {
+            color: #525354;
+            text-decoration: none
+        }
+
+        body {
+            background: #F4F4F8
+        }
+
+        .weixin-tip {
+            display: none;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            width: 265px;
+            padding: 55px 0 0;
+            text-align: left;
+            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAACICAMAAABQgAwUAAAAMFBMVEUAAADY2NjY2NjY2NjY2NjY2NjY2NjY2NjX19fY2NjY2NjY2NjY2NjY2NjY2NjY2Njr/TvvAAAAD3RSTlMAxy89c9CdTRyG7lvcD7FzqbJAAAACFklEQVR42uWYy4rkMBAErZdlPdzx/3+7LAw0tH0Y2orDsnnyKQlSVaWytoc6xrEpigFoinUAIBnWABAE5woW9o6GPbGwI1jYGSzsgoV9goU9wMLe0bA7FnYCC7uBhV2wsE+wsAdY2AENGyzsBBZ2Q8MuWNgH94pLbgELO6Bhg4VdwcJuaNgTCzuChZ3Bwg5o2GBhV7CwdzTsjoUdwcLOYGEXLOwTLOwBFvaOht2xsBNY2I1f6lhaenvhrfpkAblab+k9b/OD0iuX2F9/x8D+7ZL2pmpbuj+6o3Vg//oWmPU9p65VkXL6+oIJ8S738nwj62Pb1lvHACH+fBs7sG59U3yrVD3rce3GVcp8qGkPAGTprQUYy6xfaE8i82b6S7/pfZnzdYQIHeOXdfYKpHoFcmrvWlM8RW+CDO8JMWoNM/+FeyB4UfMpL48g5qG1Iqc29YI3mqq2knXvEJu2onJoQy9ok4mkQZf/GjqitUvQyqN6SU8NOvOhHq25xNCWj6LFQdLiyKuaZWpxBC2OrFVHxdryElbQsVtBx6KN0qAd4a71yo610uxa2b0s5xg052I5p26d4MCqusZFwzrAnqQhSogSMnkNcr+GUS3kEKWS62NJFlNCToWLZpWMe14RReGqdjz2PfNECbkGbrQ/Nj5q5y7j8/HRTW5UhvHfA7Mdzitji8rfWsgX3gVZ91eO22odKed6LLf9A/sRnc74RV7lAAAAAElFTkSuQmCC) no-repeat right top;
+            background-size: 45px 68px
+        }
+
+        .weixin-tip-img {
+            display: none;
+            padding: 110px 0 0
+        }
+
+        .weixin-tip-img::after {
+            display: block;
+            margin: 10px auto;
+            content: ' ';
+            background-size: cover
+        }
+
+        .weixin-tip-img.iphone::after {
+            width: 150px;
+            height: 150px;
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAAXVBMVEUAAADq6vHs7PLu7vPu7vPu7vMeiPL///8cm/UarfcfdfAavvkczvvG5/oDAABd0/qh2/r7ExFSovWGvPPi3c4FCkfSv6VWBwCIhpJPir+pSCoFSZG8hWdPUE/v7/SejHF2AAAABnRSTlMAI0XUl2pd6vM9AAARD0lEQVR4XuzYwY3EMAxD0Ugk21D/ZS529ziXITCTODFfCR+y7ORYQlVLJPFr/uEPSamrjjiqRWLeAFJdG2fC2LBdsnrpZBfbI1gT8xFgP32i5qOo2nukMmDN+SL2fqXSq4g5BVjHvQlzIujOQzWnY2VTGdg5fwbomamSS7MAZaoM0HNSJVdjloI+VlWY5aDyBDWwcgUadNsTmLPIWRxzBxrQGSsDM1YGdMbKwFyCBlTeVgblCBq4+BHMUey5rc66MijrysCsKwMqrZxaWe2Gzmo3dFoZlFYG5clgYFoZmFYGppWBaWVgWhmYN4NBaWVQWhl0zbdzvhNrHq8u+H+V/1uYDSAPLANzERqUi9DQuQgNleX+PmS5G3j5cv9h145WHIdhKIBu65SwxOLex5kX/f9nbuVoiKHDslltpIFZpa2MHw9XhtZdc0rX2kP+lisVr8pjq2VT1XO1qgNrLamaY+teYVXPdS8YwrWw8gdxqbGqj9aSPoRrbSUNYv0Q1g9i8hCWV+Yg3vQ7Y+kteQi/zyA+aq3qtR6pQ/h9BnH5j7UEgpWDpUIC6KMAgKIBrJRotQorIfqnBUqFVvuyX6AF/bcFyY/WPSNYGpD6p16aEK2HpmJxprI1n331jtkR1EwsfXyxn0eVfS7os6ljjTUM8ChqIlZLCJb+XaogA8nfE5o42GmuhNuLloYleEmUYkrWtC+YUNOwWsLl18kJhCMZiHLv6540GhgdjWfDpZdHS+N1MlZibzEV7yNZo9PA4NtyNlwar8uDpSdiZTD06ICHyLo3woMHX38QU+JY8Wi1FCz1WB2RGTsvWHLswgPoBUnBavXX9fPJjj1a5KF0NJ0Cxmc3Ujggg1jxaLUMLJlSRPvA5NL7Zn1vLijwzmkSOzOw2tV/XPvTXJEeLQfZDMhe47G+r+FmNCfioNQAVvymZ7keS2UQAJ4YiIvAoT4Rw442rAhX69tGvR5rCdxSRLGUGAr8gOpjw11eX9b9Id2UOqze3zsDWNG7i+V6LKPZngLww2qI2Ybtvjy2ty89h7aA0D7f3n52MIAVjJZejiXov2i3ux5HdRgMwGf7MYdoJ7JLbgCh/P+fubFx91UQdKeVXtMhZkSQeOSYqzQAkfaXNTganwV0MAIQ9337xLKuc7uQTMeq3M1Mr6xcRbSNkjWI3CR0Isc/AhKZakundZn96pUWdRPUlY1V3QpafgkSyCAJKCRq0NNjmaLUpLKxrsftnY2lvgatoKCF6Lwg1Ycxp/XxmJKoignqqRZzD9SNjbXZSDazLbXze2FfwaVZDZKDWpSNdWNuZ3pl5Vrd+ns3JrNKkjWkz5s8cQvUpZKx1Hmg9VEks1pmUZVYzOdti7hN5UbGciBR/fbzh1rD+jArVTzM2tYJFm8dViIWvoThJB9pWbtqMcvuGZK5WJW4+etFx4LWB1hps1qHbbLgOUrGuvA26ZwWlkjnlNrR//ZpDHHz5FbLDL5vyXretXhbeioPCx0rq2xKHp51VshwVwrWYXpsVpgj+vwmKher7lYhF6sWvF3UTIrCgRUucPy9Z14fHtNzDqgsr1ysC22r3ElhBZeqhMpPD7QrtwrN5ydVXF+5WP06vFKxqrYaEZHgEtTMD48prNbZZvpsPM3HSsW60jb3HhWWvWExpjaKXx3/9tc+WruKhhX/s2pzMTUzu85MrH5n3Z2LFaUkRSWFx4nWkd28dlbh5UTiZM7Gxbp3LYuJVcVrwU4gQBlZQGfPZe0qolklTIgSE1Fto1QiVt+0KhUrm4O3LASoUCmR9gGrdQgq3OQf2KyWZSpWhdWFi1VMQbN/6dNb4e0qYhlSBKREs+oGXrhYF6xCLpZEg9GsIudcB5AzrJZ5DzmWrHicVCoW1uGVipVHAwgv1fTDwBJEw+px40M4ihhdpmJd0bKoWM4j8ny1z6ymYW8F/1wsUSYWmtYvLlYxgKKq8na7Om9YWIsS/IWJhU0Edy6WPGvgLay5s/r6N65wse7o70SsOnb14j8f+z+kntsSRMz7KXhQGkWk2FipWDdKf69H/b0UkRFaOPnYpUdWoOzmGpTmFmp5pmJd0bKIWNoAxu2VioOhgjAitdPXFEpo7gOEwCuaFQ9VHhaa1oWO5SFFNeuYhheVFUdvtXR11U/E4qZjXdDfeVjFAfbv60M/Pm/7WnqrGRPswAR4jZYUHhY6/I2LJcYwjikB5+CAwuhWiPkfcyS3KMPAxEKHv/KxJOeay6YVZLsf0rzuGhZuOynGNHgIDwsdvpKxhi1QWQGGM9LBOs/aW4EKc5BGJDpWxceQhzW6QTsQZ1wp1hK0FpAc4KLD29VIxvqFjyEVaxQZZWyRIDUgR0h7R9NCc99iX5KB+4cbe9ttG4bBANw1iaUVIMb9vNmGgu//mANFsYwXL7UvZBSi5Qg+wAA/ULQRCQAeipWvw9sJWC0pb8RPA1pWWma1L4Zi5evwOhxrd3wnp9Ku9esA1fiedf1aWFxcqvet933CvrprxQlYl3PehsCnauJU2rby/mfZZ0WkbXnLMKz8dtDBWGIrhPTTflWh3conqodiPJbal8NwrH0BU0orrl8O69t4LK51CRCgHSzrzU+RIQWVSvXbfGxvFaTEzHAsHo/1OhwLzuT/0qAhrMLPsCHFIEcNsM3wCxBSVbsfw7FeX26jsTwRjaa1WSq+htKq5j3/L6yEBOyHRmPdxmOpZWL7s7yhSaWyErH52RZPho7Huo7GKvCEt7UcMKwc995nu2WlO4QFjRRlNNb1BCypi+UCZmOwsd69uUdZEfyeHDZv7u4sTGS+MgVWMxIlQct8Y11JY2pcFBA5HlZigAP9efZg8AlYl+FYBANyqArBsg6z0qgsCaIcMWUEohDl00DDsS4nYJVMiD29LJHesKKy4BKr341y/MADq5J7ocyBJTUSYywPASrdl0I1qRJqHWkoVLxlzYAVCFLI0B6iUq8r5WVvrOkqnHwOrBJNayskvhhkOR748EeZBYsRMlIfrUxLFQed+tLuLb7yCVj6oidgkfT24mpIGKgXFmE5GEIILptoGqzCLa1ORSlTqVkpH6WK52SBzoOVPEIkCcAl29XxEA0u0ERYRSKpyC+bez/zZuPtfs4pz8QII+3VWmbCaiDggPFsoXHJj4PM55jySs7J7R2LZ8HK0oLIXfJupRxEtgWXH+f8zxnYLxhBhr/snUFr6zAQhPuaZxkEC8vsXf//Zz4mmku7xM85rE1FNbWVqrn0Y3YkElsmm0WWDvKPPOHeWkcARlaRCk6dhqj0DvnJQuysGpZUD0tytC//J0uHVZloZER5LDw0v5JW7Is5ix7qvYXTYfREzGjvHJXYJWn8Gza4obcGjmEsB2s39D4zJwZZCd//JGA85nmeQFpsXH+sB2v31tmaj6AbLARCLPSTDo3rVaAJuT9hswhXhDWCrGAGrbeao38Hk3GJmF6Eg7YKGnQW9rgOVvXHyrkQAbrCwABLYF6h0hjhOJE9aXEgzYQ/9DP4LFfMxDA6w1o/1YRLv7iDAR+dDb6vCms48TSwb0Gj5TLMkSUB6o3ewgwsH5fC2oph5fWDEsdCEKyfajDhg4UgpsD64d9IZ1oN9ATIqpGX83RGQcas5DDRIqtLYX3Ww8qV2GEM9wgZhiOvAwyKOgvNhoEmVpfC+iy85OiYViMnEaAcB5bSWww0oqhmVgtcn/WCFlmB7viaXJOL1EKWak+6zVyFKFaXw/q4CFZeQYBFOFhaOqghPOpkKehNxNtStl8Fq+oC3GMZupqxEolAQxAl+U1dWJvZZjxR8LFfDetRf2n3MS2+gNNhJMD8/gKLCDkHDsxZE3HE6udeB38sU9VBRWZGEpNIEyw6KfRnn6aTwsZ+D6ztDlj7kLmU4gOTCiOMKb5Pw7lNs4WMl2x1Jayt9EanY5k34RIMOmcnsP6E1Yzj7FWPUti+3wLrs/oWumNzRVdDzDLDTmATFqFhCBROVWD9LXQfF8PKuCTIYUOwBg+BkkBUd8GqvO33fVya7UywXDmVcv0eWI/KG8rP40JPLQ/hDKr6G8q3+2AJV+aVSRHVrbC2wk0w3uf1AhhOkyrfBOO26TDz8ggA30GFJ1I3TYbVG/e8bzBzDzV3e89S1Rv3FCV8jW7Pd2r7hXUq36tCq0T3Rxb1C+v/Kth6U1qP1eP8PtS/sLaK7YKldVjlZw0UwFqL1ajZ4lxaDNbfqs3zpaWMtVU9lkFaB5VWWUWLB2kdVo/0KJkCrYFKkVW4eJAWQJUfFjbK2n4VsH/snc2O5CAMhPf3SKm1MYYEyPs/5jahe0ryTCtpsWgv1IUZy6dPZafg0vs4Xf1htSlOIedw6nwKz+dw6v2fGZ1TeH0O5xSe5dIpJtL353BOob0fTtl7Yccczik07zRT5nXmctSaIev6ip/r/eqKn+u911rTWOcpfqb38/Qwc0NHepi54cRa01gd1prGMsF0ily6rDWNZbfW3FijraVDAIi4/2GswdYSYB3AKiDVk1JgHW6s0dZSYLE1ueulYy7C8rdPFfdVo5XrMdZoa2VYY2lAVXJfMSBaIw2rQWNhpXtTiVSpHQFGaYCx+m+IGfC+FMCXhxqIDfAx1vptt9rgi3vl0AuwMqiKveHL8LHqONaOW+E4a2UAOFg1Wh7A2nYLt47RRoAvnJVj1Lsy/KJVMR6kns5SObRhFVFHjjzGGav/XStgseZZuXY+w3Kni93It2HjP1WZw3wCq+Md65+/a+W2mnJcCGsxf4moGFismZwg4eEotDM3PvkY8lIGwOI71mhrScDSjtU6q84M1/1R3FC1sPbYVRlY68ldZU+iGAOLxhoYHzYkO1512+yUPtf9Wv0BX4pjbW0NQPmvsBgbRu74Dd5ZWBIqCjFGU3jX+mxN22fzEiwN6wBY3O4DB1E2ILUPVPA3EVH3KFeV6IxDGixb08rqEqyWogjrOdjeA/4uJq2OIRy04yWgwgqglgdFLe1fJnYlLFPTCuAclmQAPu4WVot6KFVHjPFIHdt90CBmADGkPddQHVoqdGyQ/ISnMZYAjqGpNUiE5eMhoJ1Hj+QAcBcSFvMsx3DAEHbkeF5c2pYgBNuRPj58hbBMzcKCUesBAl4u+ExYHdl95CBKWPYvYElZ+SFMuwJpkdpBWKx96axF7tLn+YC8ulfRgYGOHR1DOOyLaGDxUkdYGYnl1mdqhPV+dOBVgR2Dh5CD2A+L+bRBUSy7jQ6sWVj1cIa57GewCD91DeHgL6KAsDghH1bBn+d1SANhmZqB9dmgZ7AUWNjRMYSDB1Hb24gqsKrWP2/VWkc1AIkBHvDlxp3FWjcsCUjs6BvCodFUYbW00FDlV14N060arsEytbdhiYoGLPSVdwTcH0eH3REVSVXlKVVtdalVPimI4/IxtavPyhuTuaLq9lE335aOO+GotcVwMEZi3skymEkDSvkwVkiOPveuY2ENW1vjpZHOeu1B69c3Wf1t185uGwaCIIjO0Z2G8w/TsAX/qyHJosh6IRRmDxK79ZjmlV9geLgWMC8bArrw69Hc8grkfn2BWtv1JM1BGBgOwoA5CAOmVcC0CogLVkC0CohWAdEqIFoFRKuAuTMETKuAaRUYvp0Dvfy/SmrRKiCuDAGztQeGrT3Qy3YVENtVwGxXgV6WYEAswcB8zHDt1PuJsQrMMlYBMVaBXg7BgLlbBVrHTKWuI+plBQZmOQMDPlCudR2dl1QBcwQmvExVwEuqwOg9qTT1iVpcQRNe1l+g9U+9Vl0nMGKnSowolZjXrMfV1Cm1nzxgcteZjZaRSrQfK7Zy15X03Irlnabrmnqs+5qtbpnQPbak/fWX54cke/oYlb4BOpAsA4h+WeAAAAAASUVORK5CYII=)
+        }
+
+        .weixin-tip-img.android::after {
+            width: 283px;
+            height: 355px;
+            background-image: url(img/提示.png)
+        }
+    </style>
+</head>
+<body>
+<div class="J-weixin-tip weixin-tip">
+    <div class="weixin-tip-content">
+        请在菜单中选择在浏览器中打开<br/>
+        以完成支付
+    </div>
+</div>
+<div class="J-weixin-tip-img weixin-tip-img"></div>
+<div id="result_tip" style="margin:auto;font-size:14px;display:none;height:30px;width:200px;padding-top:16px;">
+    <a href="javascript:void(0)">完成支付后，点击这里查看结果</a>
+</div>
+
+<script type="text/javascript" src="ap.js"></script>
+<script>
+    var checkIntval=false;
+    var checking=false;
+    var request=function(url){
+        if(checking){
+            return;
+        }
+        checking=true;
+        var xhr=new XMLHttpRequest();
+        xhr.timeout=10000;
+        xhr.open('get',url,true);
+        xhr.send();
+        xhr.onreadystatechange=function(){
+            if(xhr.readyState==4&&xhr.status==200){
+                var res=JSON.parse(xhr.responseText);
+                if(res.paid == 1){
+                    if(checkIntval != false){
+                        clearInterval(checkIntval);
+                        checkIntval = false;
+                    }
+                    location.href="http://activity.pingxx.com/activity/pay-success";
+                } else {
+                    checking=false;
+                }
+            }
+        }
+    };
+    if (location.hash.indexOf('error') != -1) {
+        alert('参数错误，请检查');
+    } else {
+        var ua = navigator.userAgent.toLowerCase();
+        var tip = document.querySelector(".weixin-tip");
+        var tipImg = document.querySelector(".J-weixin-tip-img");
+        if (ua.indexOf('micromessenger') != -1) {
+            tip.style.display = 'block';
+            tipImg.style.display = 'block';
+            if (ua.indexOf('iphone') != -1 || ua.indexOf('ipad') != -1 || ua.indexOf('ipod') != -1) {
+                tipImg.className = 'J-weixin-tip-img weixin-tip-img iphone'
+            } else {
+                tipImg.className = 'J-weixin-tip-img weixin-tip-img android'
+            }
+            setTimeout(function(){
+                var resultTip = document.getElementById("result_tip");
+                resultTip.style.display="block";
+                resultTip.addEventListener('click', function(e){
+                    request("http://activity.pingxx.com/activity/check-paid");
+                });
+                setTimeout(function(){
+                    checkIntval = setInterval(function(){
+                        request("http://activity.pingxx.com/activity/check-paid");
+                    }, 1000);
+                }, 2000);
+            }, 6000);
+        } else {
+            var getQueryString = function (url, name) {
+                var reg = new RegExp("(^|\\?|&)" + name + "=([^&]*)(\\s|&|$)", "i");
+                if (reg.test(url)) return RegExp.$2.replace(/\+/g, " ");
+            };
+            var param = getQueryString(location.href, 'goto') || '';
+            location.href = param != '' ? _AP.decode(param) : 'https://weui.io';
+        }
+    }
+</script>
+</body>
+</html>

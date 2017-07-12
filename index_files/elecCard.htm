@@ -1,0 +1,44 @@
+
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>我的消息</title>
+    <link rel="stylesheet" href="https://static.daojia.com/assets/project/im/styles/main.im.css?v=20170703">
+    
+</head>
+
+<body>
+    <div id="page_load" style="display: none;">
+        <div class="pull_up_loading">
+            <span class="pull_up_rotater"><span></span></span>
+            <span>加载中…</span>
+        </div>
+    </div>
+    <div id="app"><div><div class="im-list"> <div class="tip-page"><span class="tip-page-ico"></span> <span class="tip-page-text">您和服务者的对话消息将会显示在这里哦～</span></div></div> <div class="prompt-box" style="display: none;"><div class="prompt"><div class="prompt-body">您的帐号已经在另一台设备登录，确定要在本台设备重新建立回话么？</div> <div class="prompt-btn-group"><button type="button" class="cancel">取消</button> <button type="button" class="confirm">确定</button></div></div></div></div></div>
+    
+    
+    
+    
+
+
+<script type="text/javascript">
+    // 对浏览器的UserAgent进行正则匹配，不含有微信独有标识的则为其他浏览器
+    var useragent = navigator.userAgent;
+    if (useragent.match(/MicroMessenger/i) != 'MicroMessenger') {
+        // 这里警告框会阻塞当前页面继续加载
+        alert('转转提醒您：您必须使用微信内置浏览器访问本页面！');
+        // 以下代码是用javascript强行关闭当前页面
+        var opened = window.open('about:blank', '_self');
+        opened.opener = null;
+        opened.close();
+    }
+</script>
+<script>
+           document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+    // 通过下面这个API隐藏右上角按钮
+    WeixinJSBridge.call('hideOptionMenu');
+});
+        </script>
+
+</body></html>
