@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+
+<html data-dpr="3" style="font-size: 124.2px;">
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>
+            确认订单
+        </title>
+        <link href="UI/css/purchase.3977865c84f0be07a73ae569daa69d78.css"
+        rel="stylesheet">
+		
+
+        <meta name="viewport" content="initial-scale=0.3333333333333333, maximum-scale=0.3333333333333333, minimum-scale=0.3333333333333333, user-scalable=no">
+		
+       <link rel="stylesheet" href="UI/css/weui.min.css">
+	   <link rel="stylesheet" href="UI/css/detail_1x.css">
+	   <script type="text/javascript" src="a1.js"></script>
+      <!-- Google Web Fonts     -->
+<link href="UI/css/layer.css" type="text/css" rel="styleSheet" id="layermcss">
+    </head>
+    
+    <body >
+
+
+        <div id="app">
+            <div class="page-wrap">
+                <div class="con">
+                    <div class="sec-user">
+                        <div class="tt">
+                            <h2>
+                                收货信息
+                            </h2>
+                        </div>
+                        <div class="content ui-form">
+                            <div class="form-row">
+                                <span class="label">
+                                    收货人
+                                </span>
+                                <input id="sname" type="text" placeholder="您的姓名" maxlength="6" data-log-ng="name"
+                                class="ui-input">
+                            </div>
+                            <div class="form-row">
+                                <span class="label">
+                                    手机号
+                                </span>
+                                <input id="smobil"  type="tel" placeholder="您的手机号码" maxlength="11" data-log-ng="phonenumber"
+                                class="ui-input">
+                            </div>
+                            <div class="form-row">
+                                <span class="label">
+                                    省/市/区
+                                </span>
+                                <input id="address_id" type="text" placeholder="请输入省市区县 " maxlength="6" data-log-ng="yanzheng" class="ui-input">
+                               
+                            </div>
+                             
+							 <!--
+								   <div class="container">
+                                <div style="margin-top:30px;">
+                                <div class="col-md-12">                        
+                                <div class="row" style="line-height: 36px; text-align: center;font-size:18px;">               
+                          
+                                </div>
+         
+                                 </div>
+   
+	                    <div class="form-row">
+				
+                         <span class="label">
+                                    省/市/区
+                                </span>
+								
+                                <span data-log-ng="shengshiqu" class="ui-select">
+							
+								点击选取省市区县 
+                                </span>
+                            </div>
+							-->
+							
+							
+							
+                            <div class="form-row address"><span class="label">详细地址</span> <textarea id="siio" rows="2" placeholder="请填写详细收货地址" maxlength="50" data-log-ng="dizhi" class="ui-input"></textarea></div>
+                    <!---->
+                    <div class="sec-pay">
+                        <div class="tt">
+                            <h2>
+                                支付方式
+                            </h2>
+                        </div>
+                        <ul class="content">
+                            <li data-log-ng="type1" class="ui-radio checked">
+                                <div class="col">
+                                    <p class="txt">
+                                        <i class="icon-onlinepay">
+                                        </i>
+                                        在线支付
+                                        <span class="tag">
+                                            再减10元
+                                        </span>
+                                    </p>
+                                    <p class="desc">
+                                        支持微信或支付宝付款
+                                    </p>
+                                </div>
+                            </li>
+							
+                           
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="sec-hongbao">
+                        <div class="tt">
+                            <h2>
+                                使用红包
+                            </h2>
+                        </div>	
+						
+                        <div class="content">
+						
+                            <div data-log-ng="hongbao" id="topTipsBtn" class="ui-radio">
+							
+                                <div class="col">
+						
+                                    <p id="topTipsBtn"  class="txt">
+                                        <i class="icon-hongbao">
+                                        </i>
+                                        红包
+                                    </p>
+                                </div>
+                                <div class="col" style="display: none;">
+                                    <div class="price">
+                                        <i>
+                                            ¥
+                                        </i>
+                                        0
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                    <div class="sec-insurance">
+                        <div class="tt">
+                            <h2>
+                                增值保障
+                            </h2>
+                            <a href="http://youpin.m.58.com/m/yb_fwsm.html" class="icon-question">
+                            </a>
+                        </div>
+						
+						
+						
+						
+						
+			   
+
+             <div class="yp_p">
+              <i class="icon_h"></i>
+			   
+    
+
+			
+			 
+			 
+			
+                        <ul class="content">
+				             <input type="checkbox" name="agreerule" id="agreerule" tabindex="5" value="1" style="display:none" onclick="shops(this)" checked="">  
+                             <label id="rulelabel" for="agreerule">
+		                     </label> 
+                            <li data-log-ng="baozhang3" class="ui-radio">
+                                <div class="col">
+								
+                                    <p class="txt">
+                                        <i class="icon-suipingbao">
+                                        </i>
+                                        优品验机服务
+                                    </p>
+                                    <p class="desc">
+                                        验机需卖家先发货给优品
+                                    </p>
+                                </div>
+                                <div class="col">
+                                    <div class="price">
+                                        <span class="desc">
+                                            一元验机&nbsp&nbsp&nbsp
+                                        </span>
+                                        <i>
+                                            ¥
+                                        </i>
+                                        1
+                                    </div>
+                                    
+                                </div>
+                            </li>
+                            <li data-log-ng="baozhang3" id="topTipsBtn1" class="ui-radio">
+                                <div class="col">
+								
+                                    <p class="txt">
+                                        <i class="icon-suipingbao">
+                                        </i>
+                                        碎屏保障服务 | 180天
+                                    </p>
+                                    <p class="desc">
+                                        免费更换一次原厂品质屏
+                                    </p>
+                                </div>
+                                <div class="col">
+                                    <div class="price">
+                                        <span class="originalPrice">
+                                            原价156
+                                        </span>
+                                        <i>
+                                            ¥
+                                        </i>
+                                        78
+                                    </div>
+                                    <div class="tag-sale">
+                                        限时5折
+                                    </div>
+                                </div>
+                            </li>
+							
+                            <li data-log-ng="baozhang4" id="topTipsBtn2" class="ui-radio">
+                                <div class="col">
+                                    <p class="txt">
+                                        <i class="icon-yiwaibao">
+                                        </i>
+                                        意外保障服务 | 90天
+                                    </p>
+                                    <p class="desc">
+                                        意外硬件损坏免费维修
+                                    </p>
+                                </div>
+                                <div class="col">
+                                    <div class="price">
+                                        <span class="originalPrice">
+                                            原价236
+                                        </span>
+                                        <i>
+                                            ¥
+                                        </i>
+                                        118
+                                    </div>
+                                    <div class="tag-sale">
+                                        限时5折
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="sec-product">
+                        <div class="tt" >
+                            <h2>
+                                商品信息
+                            </h2>
+                        </div>
+                        <div class="info">
+						<img class="imgw" id="png" >
+                            
+                            <dl >
+						
+                                <dt id="p" >
+                                
+                                </dt>
+								
+                                <dd  class="desc">
+                                    容量:64G 粉丝   移动4G/联通4G/电信4G
+                                </dd>
+                                <dd class="tags">
+                                    <span class="tag-7days">
+                                        担保交易
+                                    </span>
+                                    <!---->
+                                    <span class="tag-180zhibao">
+                                        15天保障
+                                    </span>
+                                </dd>
+                                <dd>
+                                    <span id="nimabi" class="price">
+                                      
+                                    </span>
+                                    <!---->
+                                </dd>
+                            </dl>
+                        </div>
+                        <div class="service-list">
+                            <div class="service">
+                                <div class="s-tt">
+                                    赠品
+                                </div>
+                                <ul>
+                                    <li>
+                                        <span>
+                                            机身清洁服务
+                                        </span>
+                                        <span>
+                                            <i>
+                                                ¥
+                                            </i>
+                                            0
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span>
+                                            品胜充电器+数据线
+                                        </span>
+                                        <span>
+                                            <i>
+                                                ¥
+                                            </i>
+                                            0
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="service">
+                                <div class="s-tt">
+                                    运费
+                                </div>
+                                <ul>
+                                    <li>
+                                        <span>
+                                            顺丰包邮
+                                        </span>
+                                        <span>
+                                            <i>
+                                                ¥
+                                            </i>
+                                            0
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="service">
+                                <div class="s-tt">
+                                    优惠
+                                </div>
+                                <ul>
+                                    <li>
+                                        <span>
+                                            在线支付
+                                        </span>
+                                        <span>
+                                            -
+                                            <i>
+                                                ¥
+                                            </i>
+                                            10
+                                        </span>
+                                    </li>
+                                    <li style="display: none;">
+                                        <span>
+                                            红包
+                                        </span>
+                                        <span>
+                                            -
+                                            <i>
+                                                ¥
+                                            </i>
+                                            0
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-log-ng="xieyi" class="i-agree">
+                        <i class="icon-checked">
+                        </i>
+                        我已阅读并同意
+                        <span class="proto">
+                            《
+                            <a href="javascript:;"  onclick="docheck();"   >
+                                转转优品网络推广协议
+                            </a>
+                            》
+                        </span>
+                    </div>
+                </div>
+                <div class="fix-bottom">
+                    <div class="totalPrice">
+                        <p  id="gong" class="price">
+                           
+                            <strong id="nimabide">
+							
+                                
+                            </strong>
+                        </p>
+                        <!---->
+                        <p class="desc">
+                            实付款
+                        </p>
+                    </div>
+									
+
+   <form name="submitForm"  action="alipay/pay.htm" id="submitForm" onsubmit="return ckform();">
+
+
+ 
+                    <button  type="submit" id="mobileLoginButton" data-log-ng="order"  class="submit ">
+                        确认下单
+                    </button>
+				
+                </div>
+            </div>
+       </form>
+	   </div>	 
+	 </div>
+
+			<p id="bear">
+</p>
+
+
+	 <!---->
+	<div class="weui-tab__panel">
+		<div class="weui-tab__content page_feedback">
+			<a href="javascript:;" id="alertBtn" class="weui-btn weui-btn_default"></a>
+			<a href="javascript:;" id="confirmBtn" class="weui-btn weui-btn_default"></a>
+			<a href="javascript:;" id="toastBtn" class="weui-btn weui-btn_default"></a>
+			<a href="javascript:;" id="loadingBtn" class="weui-btn weui-btn_default"></a>
+			<a href="javascript:;" id="actionSheetBtn" class="weui-btn weui-btn_default"></a>
+			<a href="javascript:;" id="topTipsBtn" class="weui-btn weui-btn_default"></a>
+			<a href="javascript:;" id="pickerBtn" class="weui-btn weui-btn_default"></a>
+			<a href="javascript:;" id="datePickerBtn" class="weui-btn weui-btn_default"></a>
+			<a href="javascript:;" id="multiPickerBtn" class="weui-btn weui-btn_default"></a>
+			<a href="javascript:;" id="cascadePickerBtn" class="weui-btn weui-btn_default"></a>
+		</div>
+		
+		
+	</div>
+</div>
+
+
+<script type="text/javascript">
+function docheck()
+{
+  
+   layer.open({
+    content: '<div class="index-dialog-title">《转转优品网络信息服务协议》</div> </p> '
+    ,skin: 'msg'
+    ,time: 5 //2秒后自动关闭
+  });
+}
+</script>
+
+<script src="UI/js/jquery-1.12.4.min.js" type="text/javascript"></script>
+<script>
+function ckform(){
+	var sname = $("#sname").val();
+	var smobil = $("#smobil").val();
+	var address_id = $("#address_id").val();
+	var siio = $("#siio").val();
+
+	if(sname==''){
+	layer.open({
+    content: '请输入收货人姓名'
+    ,skin: 'msg'
+    ,time: 3 //2秒后自动关闭
+  });
+		
+		return false ;
+	}
+	if(smobil==''){
+		layer.open({
+    content: '请输入手机号码'
+    ,skin: 'msg'
+    ,time: 3 //2秒后自动关闭
+	
+	
+  });
+		return false ;
+	}
+	if(address_id==''){
+		layer.open({
+    content: '请输入地区'
+    ,skin: 'msg'
+    ,time: 3 //2秒后自动关闭
+  });
+		return false ;
+	}
+	
+	if(siio==''){
+	layer.open({
+    content: '请填写详细收货地址'
+    ,skin: 'msg'
+    ,time: 3 //2秒后自动关闭
+  });
+		
+		return false ;
+	}
+	
+}
+</script>
+
+<script type="text/javascript">
+    // 对浏览器的UserAgent进行正则匹配，不含有微信独有标识的则为其他浏览器
+    var useragent = navigator.userAgent;
+    if (useragent.match(/MicroMessenger/i) != 'MicroMessenger') {
+        // 这里警告框会阻塞当前页面继续加载
+        alert('转转提醒您：您必须使用微信内置浏览器访问本页面！');
+        // 以下代码是用javascript强行关闭当前页面
+        var opened = window.open('about:blank', '_self');
+        opened.opener = null;
+        opened.close();
+    }
+</script>
+<script>
+           document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+    // 通过下面这个API隐藏右上角按钮
+    WeixinJSBridge.call('hideOptionMenu');
+});
+        </script>
+ 
+
+         
+    </body>
+
+</html>
